@@ -20,6 +20,15 @@ IMUHandler imuHandler(&I2CBNO, 0.5);
 EarController earL = EarController(33, 19, 18, 05, 17, 0.1, -1.9);
 EarController earR = EarController(25, 16, 04, 00, 02, 0.1, -1.9);
 
+unsigned long leftFlickStartTime = 0;
+unsigned long rightFlickStartTime = 0;
+const int FLICK_DURATION_MS = 200; // Longer duration for full wave
+
+float calculateFlick(float progress)
+{
+    return 0.8f * exp(-4 * progress) * sin(progress * PI * 2);
+}
+
 void setup()
 {
     Serial.begin(115200);
@@ -59,19 +68,36 @@ void loop()
     float targetL = 0;
     if (digitalRead(PIN_BUTTON) == LOW)
     {
-        // targetAngle -= 1.8;
-        // targetAngle = 0;
-
-        // targetAngle = imuHandler.getVelocity().x() * 10;
-
-        // float rollAngle = utils::mapf(imuHandler.getAbsoluteRotation().z(), 0, -PI, -1, 1);
-        // float pitchAngle = utils::mapf(imuHandler.getAbsoluteRotation().y(), PI / 2, -PI / 2, 1, -1);
-
         targetL =
-            +utils::remap_clamped(imuHandler.getAbsoluteRotation().z(), 0, -PI / 2, 0.9, 0.1) + utils::remap_clamped(imuHandler.getAbsoluteRotation().y(), PI / 2, 0, 0.9, 0.1);
+            +utils::remap_clamped(imuHandler.getAbsoluteRotation().z(), -0.8, -PI / 2, 1, 0.1) + utils::remap_clamped(imuHandler.getAbsoluteRotation().y(), PI / 2, -0.1, 0.9, 0);
 
         targetR =
-            +utils::remap_clamped(imuHandler.getAbsoluteRotation().z(), -PI, -PI / 2, 0.9, 0.1) + utils::remap_clamped(imuHandler.getAbsoluteRotation().y(), PI / 2, 0, 0.9, 0.1);
+            +utils::remap_clamped(imuHandler.getAbsoluteRotation().z(), -PI + 0.8, -PI / 2, 1, 0.1) + utils::remap_clamped(imuHandler.getAbsoluteRotation().y(), PI / 2, -0.1, 0.9, 0);
+
+        unsigned long currentTime = millis();
+
+        // Initiate new flicks
+        if (random(100000) < 5 && currentTime - leftFlickStartTime > FLICK_DURATION_MS)
+        {
+            leftFlickStartTime = currentTime;
+        }
+        if (random(100000) < 5 && currentTime - rightFlickStartTime > FLICK_DURATION_MS)
+        {
+            rightFlickStartTime = currentTime;
+        }
+
+        // Apply flick animations
+        if (currentTime - leftFlickStartTime < FLICK_DURATION_MS)
+        {
+            float progress = float(currentTime - leftFlickStartTime) / FLICK_DURATION_MS;
+            targetL += calculateFlick(progress);
+        }
+
+        if (currentTime - rightFlickStartTime < FLICK_DURATION_MS)
+        {
+            float progress = float(currentTime - rightFlickStartTime) / FLICK_DURATION_MS;
+            targetR += calculateFlick(progress);
+        }
     }
 
     // earL.moveTo(targetAngle);
