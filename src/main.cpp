@@ -24,6 +24,11 @@ unsigned long leftFlickStartTime = 0;
 unsigned long rightFlickStartTime = 0;
 const int FLICK_DURATION_MS = 200; // Longer duration for full wave
 
+const unsigned long BUTTON_HOLD_DURATION = 1000; // 1 second in milliseconds
+bool buttonPressed = false;
+unsigned long buttonPressStartTime = 0;
+bool toggleState = false;
+
 float calculateFlick(float progress)
 {
     return 0.8f * exp(-4 * progress) * sin(progress * PI * 2);
@@ -63,10 +68,36 @@ unsigned long lastPrintTime = 0;
 
 void loop()
 {
+    if (digitalRead(PIN_BUTTON) == LOW) // Button is pressed (active LOW)
+    {
+        if (!buttonPressed)
+        {
+            // Button just pressed
+            buttonPressed = true;
+            buttonPressStartTime = millis();
+        }
+        else
+        {
+            // Check if button held long enough
+            if ((millis() - buttonPressStartTime) >= BUTTON_HOLD_DURATION)
+            {
+                toggleState = !toggleState; // Flip the toggle
+                // Reset timer to prevent multiple toggles
+                buttonPressStartTime = millis();
+            }
+        }
+    }
+    else
+    {
+        buttonPressed = false;
+    }
+
     float targetAngle = 0.1 * PI * _sin(float(millis()) / 500 * PI);
     float targetR = 0;
     float targetL = 0;
-    if (digitalRead(PIN_BUTTON) == LOW)
+
+    // Use toggleState instead of direct button reading
+    if (toggleState)
     {
         targetL =
             +utils::remap_clamped(imuHandler.getAbsoluteRotation().z(), -0.8, -PI / 2, 1, 0.1) + utils::remap_clamped(imuHandler.getAbsoluteRotation().y(), PI / 2, -0.1, 0.9, 0);
