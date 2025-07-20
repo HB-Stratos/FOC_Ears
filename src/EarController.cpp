@@ -27,6 +27,7 @@ void EarController::init(float zero_electric_offset, Direction sensor_direction)
     motor.zero_electric_angle = zero_electric_offset;
     motor.sensor_direction = sensor_direction;
 
+    // MOSI is not used at all, but has to be specified
     SPI.begin(32, 35, 33); // TODO clean up SPI bus
     configureDriver();
     configurePID();
