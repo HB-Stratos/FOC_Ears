@@ -16,6 +16,7 @@ The classic design using RC airplane servos is quite noisy, and I wanted to fix 
       - [Motor Assembly](#motor-assembly)
     - [Wiring](#wiring)
     - [3D Prints and Mounting](#3d-prints-and-mounting)
+    - [Build Environment Setup](#build-environment-setup)
     - [Misc. Lessons Learned](#misc-lessons-learned)
   - [Thanks](#thanks)
   - [Finally](#finally)
@@ -148,6 +149,10 @@ The ear lobe slider which glides on the metal headband. It is printed from TPU f
 
 All 3d printed parts can be found in the ``printed_parts`` directory as STEP files, as well as the original Fusion360 source files. Do note however that the source files are a royal mess as they were created during prototyping and with exactly zero patience.
 
+### Build Environment Setup
+
+This project uses PlatformIO instead of the Arduino IDE as it has far superior code completion and extension support. Setting up the build environment should just be as easy as setting up PlatformIO using the [official guide](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start) and cloning this repository into the workspace. It will take a few minutes to load, but PlatformIO should automatically download all required frameworks and libraries as specified in the ``platformio.ini`` file. If this doesn't work for whatever reason, please do open an issue. Also, for some reason this was removed from the official settings, but PlatformIO does offer an "Upload and Monitor (connect to Serial Monitor immediately)" mode. You can find out how to set this up [here](https://community.platformio.org/t/shortcut-to-upload-and-monitor-task-while-also-restarting-it-if-active/18104/5).
+
 ### Misc. Lessons Learned
 
 - If the screws clamping the encoder to the motor are not tight enough, the motor likes to shake itself to bits as it twisting against the encoder causes a feedback loop.
@@ -171,6 +176,7 @@ All 3d printed parts can be found in the ``printed_parts`` directory as STEP fil
 - SimpleFOC requires that PlatformIO ``lib_archive = false``. If it isn't your code will compile and run, but behave weirdly in all sorts of strange ways. Be careful.
 - The Motors claim they can handle 12V, but I have driven them to 20V with no issues. I just went with 15V as I didn't need the torque and it slowed the motor heating up should an ear become blocked.
 - This project started with me trying to use silent stepper drivers and motors for the motion instead of FOC. However, the holding current being constantly drawn by the stepper motors made them get very hot while still lacking torque to not miss steps. Still, using TMC2209 stepper drivers might work for smaller animatronics such as blinking eyes.
+- If you can't upload the code with error Access Denied, check if you have a 3D printer slicer such as Cura open. It was automatically trying to connect to all COM ports for me, blocking code uploads.
 
 ## Thanks
 
