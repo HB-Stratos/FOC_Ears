@@ -54,14 +54,19 @@ The system consists of the following components:
 
 - An [ESP32WROOM](https://aliexpress.com/item/1005008002597306.html) micro controller <br>
 <img src="media/S340af197f28f484096b07d7be24ccdf9n.png_960x960.png_.avif" width="200">
+
 - Two [SimpleFOC mini](https://docs.simplefoc.com/simplefocmini) driver boards <br>
 <img src="media/miniv11_front.jpg" width="200">
+
 - Two [Mitoot 2208 100kv](https://aliexpress.com/item/1005006008489660.html) Brushless Gimbal Motors <br>
 <img src="media/H49295eb591444904a3ab5c39b827201c5.jpg_960x960q75.jpg_.avif" width="200">
+
 - Two [MT6701qt](https://aliexpress.com/item/1005007349429583.html) Magnetic Encoders <br>
 <img src="media/S864addc4d82d4177b247b41e9ebe8ff5e.jpg_960x960q75.jpg_.avif" width="200">
+
 - A [BNO055](https://aliexpress.com/item/1005006770124726.html) IMU <br>
 <img src="media/S099a9a5955794d319430b4b32bb14c6dD.png" width="200">
+
 - Ears from Aliexpress. There appears to be a whole range of different style ears on Aliexpress, all following the same basic design. Look for the ears in the ~10€ price class, those will likely be extremely similar to [the ones I used](https://aliexpress.com/item/1005004647818937.html). <br>
 <img src="media/S4cc4a51bb2054b82958f7b97a1eec485u.png" width="200">
 
