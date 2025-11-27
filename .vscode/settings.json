@@ -1,0 +1,39 @@
+{
+    "platformio-ide.toolbar": [
+        {
+            "text": "$(home)",
+            "tooltip": "pioarduino: Home",
+            "commands": "platformio-ide.showHome"
+        },
+        {
+            "text": "$(check)",
+            "tooltip": "pioarduino: Build",
+            "commands": "platformio-ide.build"
+        },
+        {
+            "text": "$(arrow-right)",
+            "tooltip": "PlatformIO: Upload and Monitor",
+            "commands": "platformio-ide.uploadAndMonitor"
+        },
+        {
+            "text": "$(trashcan)",
+            "tooltip": "pioarduino: Clean",
+            "commands": "platformio-ide.clean"
+        },
+        {
+            "text": "$(beaker)",
+            "tooltip": "pioarduino: Test",
+            "commands": "platformio-ide.test"
+        },
+        {
+            "text": "$(plug)",
+            "tooltip": "pioarduino: Serial Monitor",
+            "commands": "platformio-ide.serialMonitor"
+        },
+        {
+            "text": "$(terminal)",
+            "tooltip": "pioarduino: New Terminal",
+            "commands": "platformio-ide.newTerminal"
+        }
+    ]
+}

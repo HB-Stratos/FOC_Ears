@@ -1,14 +1,21 @@
+/**
+ * I2C Scanner Utility
+ * 
+ * Scans all I2C addresses and reports which devices are found.
+ * Useful for debugging sensor connections.
+ */
+
 #include <Arduino.h>
-#include <Adafruit_Sensor.h>
+// #include <Adafruit_Sensor.h>
 #include <Wire.h>
  
-#define I2C_SDA 27
-#define I2C_SCL 14
+#define I2C_SDA 5
+#define I2C_SCL 4
 
 
 
 void setup() {
-  Wire.begin(I2C_SDA, I2C_SCL, 100000);
+  Wire.begin(I2C_SDA, I2C_SCL, 400000);
   Serial.begin(115200);
   Serial.println("\nI2C Scanner");
 }
@@ -30,7 +37,7 @@ void loop() {
       nDevices++;
     }
     else if (error==4) {
-      Serial.print("Unknow error at address 0x");
+      Serial.print("Unknown error at address 0x");
       if (address<16) {
         Serial.print("0");
       }
