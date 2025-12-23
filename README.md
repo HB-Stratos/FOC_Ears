@@ -1,3 +1,10 @@
+Hi there! Since the below was written, a few more things have happened:
+
+You can **send me your Email if you want to get involved with development** and I'll reach out. [Click Here](https://app.formbricks.com/s/cmjj02hcw36xmad01dme5074u).
+
+Work has also started on a PCB based version. PCBs have been ordered, and may or may not have arrived in time for Congress. \
+In any case, you can find all KiCad files [on the rev2 branch](https://github.com/HB-Stratos/FOC_Ears/tree/rev-2).
+
 # FOC Ears: Dead Silent Animatronics, a Prototype
 
 This repository documents my work to create truly silent animatronic cat ears.
@@ -34,6 +41,7 @@ I managed to create a working prototype in time for GPN23. It has a rather bulky
 
 ![side view](media/2025-07-18-21-41-59-991.jpg)
 ![closeup](media/2025-07-18-21-42-10-895.jpg)
+
 </details>
 
 ### Future Plans
@@ -42,8 +50,7 @@ I plan to develop a more robust version with a printed circuit board between the
 
 ## Documentation
 
-> [!IMPORTANT]
-> **This is a prototype**. I am documenting this for sake of posterity. If you wish to replicate this design, you are welcome to do so. However, expect to face issues, poor design decisions and have expect to solve many stupid problems on your own. Because of this, this is not written as a tutorial, but more as an overview of what it takes. That said, I'm happy to help where I can, just leave an issue on the repo here. 
+> [!IMPORTANT] > **This is a prototype**. I am documenting this for sake of posterity. If you wish to replicate this design, you are welcome to do so. However, expect to face issues, poor design decisions and have expect to solve many stupid problems on your own. Because of this, this is not written as a tutorial, but more as an overview of what it takes. That said, I'm happy to help where I can, just leave an issue on the repo here.
 
 With that said, lets get into it
 
@@ -54,22 +61,22 @@ With that said, lets get into it
 The system consists of the following components:
 
 - An [ESP32WROOM](https://aliexpress.com/item/1005008002597306.html) micro controller <br>
-<img src="media/S340af197f28f484096b07d7be24ccdf9n.png_960x960.png_.avif" width="200">
+  <img src="media/S340af197f28f484096b07d7be24ccdf9n.png_960x960.png_.avif" width="200">
 
 - Two [SimpleFOC mini](https://docs.simplefoc.com/simplefocmini) driver boards <br>
-<img src="media/miniv11_front.jpg" width="200">
+  <img src="media/miniv11_front.jpg" width="200">
 
 - Two [Mitoot 2208 100kv](https://aliexpress.com/item/1005006008489660.html) Brushless Gimbal Motors <br>
-<img src="media/H49295eb591444904a3ab5c39b827201c5.jpg_960x960q75.jpg_.avif" width="200">
+  <img src="media/H49295eb591444904a3ab5c39b827201c5.jpg_960x960q75.jpg_.avif" width="200">
 
 - Two [MT6701qt](https://aliexpress.com/item/1005007349429583.html) Magnetic Encoders <br>
-<img src="media/S864addc4d82d4177b247b41e9ebe8ff5e.jpg_960x960q75.jpg_.avif" width="200">
+  <img src="media/S864addc4d82d4177b247b41e9ebe8ff5e.jpg_960x960q75.jpg_.avif" width="200">
 
 - A [BNO055](https://aliexpress.com/item/1005006770124726.html) IMU <br>
-<img src="media/S099a9a5955794d319430b4b32bb14c6dD.png" width="200">
+  <img src="media/S099a9a5955794d319430b4b32bb14c6dD.png" width="200">
 
 - Ears from Aliexpress. There appears to be a whole range of different style ears on Aliexpress, all following the same basic design. Look for the ears in the ~10€ price class, those will likely be extremely similar to [the ones I used](https://aliexpress.com/item/1005004647818937.html). <br>
-<img src="media/S4cc4a51bb2054b82958f7b97a1eec485u.png" width="200">
+  <img src="media/S4cc4a51bb2054b82958f7b97a1eec485u.png" width="200">
 
 - A generic 3.3V Regulator (must be 15V capable)
 - A generic configurable USB-C PD trigger board (prototype used 15V)
@@ -81,7 +88,7 @@ Images were taken from their respective linked pages.
 
 > [!NOTE]
 > The hardware choices I made worked, but were not ideal:
-> 
+>
 > - The ESP32 can not be flashed without having to hold down the boot button every time
 > - The Motors come with the wire through their hub, so one needs to depin the connector, pull the cable through and add the pins again.
 > - The Motors are also a bit large, smaller probably works but untested.
@@ -147,11 +154,11 @@ The ear lobe slider which glides on the metal headband. It is printed from TPU f
 
 ![](media/Focears-3dp-ear-lobe-slider.PNG)
 
-All 3d printed parts can be found in the ``printed_parts`` directory as STEP files, as well as the original Fusion360 source files. Do note however that the source files are a royal mess as they were created during prototyping and with exactly zero patience.
+All 3d printed parts can be found in the `printed_parts` directory as STEP files, as well as the original Fusion360 source files. Do note however that the source files are a royal mess as they were created during prototyping and with exactly zero patience.
 
 ### Build Environment Setup
 
-This project uses PlatformIO instead of the Arduino IDE as it has far superior code completion and extension support. Setting up the build environment should just be as easy as setting up PlatformIO using the [official guide](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start) and cloning this repository into the workspace. It will take a few minutes to load, but PlatformIO should automatically download all required frameworks and libraries as specified in the ``platformio.ini`` file. If this doesn't work for whatever reason, please do open an issue. Also, for some reason this was removed from the official settings, but PlatformIO does offer an "Upload and Monitor (connect to Serial Monitor immediately)" mode. You can find out how to set this up [here](https://community.platformio.org/t/shortcut-to-upload-and-monitor-task-while-also-restarting-it-if-active/18104/5).
+This project uses PlatformIO instead of the Arduino IDE as it has far superior code completion and extension support. Setting up the build environment should just be as easy as setting up PlatformIO using the [official guide](https://docs.platformio.org/en/latest/integration/ide/vscode.html#quick-start) and cloning this repository into the workspace. It will take a few minutes to load, but PlatformIO should automatically download all required frameworks and libraries as specified in the `platformio.ini` file. If this doesn't work for whatever reason, please do open an issue. Also, for some reason this was removed from the official settings, but PlatformIO does offer an "Upload and Monitor (connect to Serial Monitor immediately)" mode. You can find out how to set this up [here](https://community.platformio.org/t/shortcut-to-upload-and-monitor-task-while-also-restarting-it-if-active/18104/5).
 
 ### Misc. Lessons Learned
 
@@ -173,7 +180,7 @@ This project uses PlatformIO instead of the Arduino IDE as it has far superior c
 - Fatigue cracking the ears works, but likes to compress the fur under the pliers. Scratching it with finger nails appears to restore most of the fluff.
 - Mounting the ears to my glasses proved essential. The motors are not the lightest, and with my mounting solution clipping onto my glasses and hooking behind my ears, I never feared losing the ears. I am yet to come up with a solution that would work for all glasses frames, let alone a solution for people who do not wear glasses.
 - Espressif changed something in more recent versions of the framework, which broke SimpleFOC. It either doesn't compile or kernel panics. I went and found the newest version released before the latest SFOC release, which worked well. You can find the details in the platformio.ini file.
-- SimpleFOC requires that PlatformIO ``lib_archive = false``. If it isn't your code will compile and run, but behave weirdly in all sorts of strange ways. Be careful.
+- SimpleFOC requires that PlatformIO `lib_archive = false`. If it isn't your code will compile and run, but behave weirdly in all sorts of strange ways. Be careful.
 - The Motors claim they can handle 12V, but I have driven them to 20V with no issues. I just went with 15V as I didn't need the torque and it slowed the motor heating up should an ear become blocked.
 - This project started with me trying to use silent stepper drivers and motors for the motion instead of FOC. However, the holding current being constantly drawn by the stepper motors made them get very hot while still lacking torque to not miss steps. Still, using TMC2209 stepper drivers might work for smaller animatronics such as blinking eyes.
 - If you can't upload the code with error Access Denied, check if you have a 3D printer slicer such as Cura open. It was automatically trying to connect to all COM ports for me, blocking code uploads.
@@ -185,14 +192,3 @@ to everyone who helped me with this project. Especially the amazing people of th
 ## Finally
 
 Overengineer more silly projects, build cool stuff, and have fun!
-
-
-
-
-
-
-
-
-
-
-
