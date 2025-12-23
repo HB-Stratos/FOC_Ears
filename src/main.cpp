@@ -35,6 +35,8 @@
     #include "utils/vl53l1x_test.cpp"
 #elif defined(USE_MPU6500_TEST)
     #include "utils/mpu6500_test.cpp"
+#elif defined(USE_OPENLOOP_TEST)
+    #include "utils/openloop_test.cpp"
 
 #else
     #error "No application mode selected! Please select a PlatformIO environment."
